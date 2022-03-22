@@ -7,7 +7,7 @@ document.getElementById("get-perms").onclick = () => {
     vid.allowFullscreen = true;
 
     console.log("a")
-    document.getElementById("cheese").appendChild(vid)
+    document.getElementById("breme").appendChild(vid)
     document.getElementById("addition").style.display = "flex"
     document.getElementById("get-perms").remove()
 }
