@@ -1,0 +1,69 @@
+<html palette="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Games | maxi.codes</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="/css/games.css">
+    </head>
+    <body>
+        <main id="main">
+            <nav id="navbar">
+                <div id="left">
+                    <a class="navbar-text text" href="/home.html">
+                        maxi.codes
+                    </a>
+                </div>
+                <div id="right">
+                    <ul id="navbar-right-items">
+                        <li id="navbar-home" class="navbar-text navbar-item text">
+                            <a href="/home.html" class="navbar-item-text">
+                                home
+                            </a>
+                        </li>
+                        <!--
+                        WIP
+
+                        <li id="navbar-about" class="navbar-text navbar-item text">
+                            <a href="/about.html" class="navbar-item-text">
+                                about
+                            </a>
+                        </li>
+                        -->
+                        <li id="navbar-games" class="navbar-text navbar-item text" selected>
+                            <a href="/games.html" class="navbar-item-text">
+                                games
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div id="games">
+                <div id="header">
+                    <div class="title">Games</div>
+                    <!--<div class="subtitle"></div>-->
+                </div>
+                <div id="games-list">
+                    <div id="games-grid">
+                        <div class="game" href="/games/2048/2048.html">
+                            <div class="game-info">
+                                <img class="game-thumbnail" src="/games/2048/thumbnail.png">
+                                <div class="game-title game-text text">
+                                    2048 Beans
+                                </div>
+                                <div class="game-description game-text text">
+                                    2048 with beans, what else is there to say?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="/js/games.js"></script>
+    </body>
+</html>

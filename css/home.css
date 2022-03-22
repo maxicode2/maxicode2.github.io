@@ -1,0 +1,43 @@
+@import url('/css/base.css');
+
+#home {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    flex-grow: 1;
+}
+#home-content {
+    text-align: center;
+}
+@keyframes home-reveal {
+    0% {
+        color: var(--background);
+    }
+    100% {
+        color: var(--text);
+    }
+}
+#home-title {
+    font-size: 7em;
+    
+    animation-name: home-reveal;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+#home-description {
+    font-size: 4em;
+
+    animation-name: home-reveal;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 1.5s;
+}
+.home-text {
+    font-family: 'Comfortaa';
+    align-items: flex-end;
+
+    color: var(--background);
+}

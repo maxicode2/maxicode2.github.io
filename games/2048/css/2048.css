@@ -1,0 +1,59 @@
+@import url('/css/base.css');
+
+#beans-2048 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header {
+    margin-bottom: 5px;
+}
+
+#tutorial-text {
+    font-size: 1.25em;
+}
+
+#bean-credits-trigger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.icons > svg {
+    top: 0;
+    left: 0;
+}
+#bean-credits[state="hidden"] > #bean-credits-trigger > .icons > .hide {display: none;}
+#bean-credits[state="revealed"] > #bean-credits-trigger > .icons > .reveal {display: none;}
+
+#bean-credits[state="hidden"] > #bean-credits-content {display: none;}
+
+#bean-credits-trigger {
+    font-size: 1.25em;
+}
+#bean-credits-content {
+    font-size: 1em;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+div.bean-credit {
+    padding: 5px 20px 5px 5px;
+}
+div2.bean-credit {
+    padding: 5px;
+}
+div.bean-credit:nth-of-type(odd) {
+    background-color: var(--background-1);
+}
+div2.bean-credit:nth-of-type(odd) {
+    background-color: var(--background-1);
+}
+#bean-credits-content-left {
+    margin-right: 20px;
+}
+
+#game {
+    margin-top: 30px;
+}
