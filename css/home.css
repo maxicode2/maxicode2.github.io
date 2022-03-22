@@ -1,0 +1,49 @@
+@import url('/css/base.css');
+
+#home {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    flex-grow: 1;
+}
+#home-content {
+    text-align: center;
+}
+@keyframes home-reveal {
+    0% {
+        background-position: 0% 100%;
+        background-image: linear-gradient(0deg, var(--background) 0%, var(--background) 50%, var(--text) 50%, var(--text) 100%);
+    }
+    100% {
+        background-position: 0% 0%;
+        background-image: linear-gradient(0deg, var(--background) 0%, var(--background) 50%, var(--text) 50%, var(--text) 100%);
+    }
+}
+#home-title {
+    font-size: 7em;
+    
+    animation-name: home-reveal;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+#home-description {
+    font-size: 4em;
+
+    animation-name: home-reveal;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+.home-text {
+    font-family: 'Comfortaa';
+    align-items: flex-end;
+
+    color: var(--text);
+    background-color: var(--background);
+    background-size: 100% 400%;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
