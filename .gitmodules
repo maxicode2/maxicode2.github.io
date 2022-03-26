@@ -1,0 +1,3 @@
+[submodule "games/questions"]
+	path = games/questions
+	url = https://github.com/maxicode2/no-stupid-questions
