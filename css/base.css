@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
 
 :root {
+    --border-radius: 5px;
+    --border-radius-1: 7px;
+    --border-radius-2: 10px;
+}
+
+:root {
     --black: #353535;
     --black-1: #272727;
     --black-2: #161616;
