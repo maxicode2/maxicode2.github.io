@@ -1,0 +1,19 @@
+{
+  "name": "maxi.codes",
+  "version": "1.0.0",
+  "description": "personal website",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxicode2/maxicode2.github.io.git"
+  },
+  "author": "maxicode",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/maxicode2/maxicode2.github.io/issues"
+  },
+  "homepage": "https://github.com/maxicode2/maxicode2.github.io#readme"
+}
