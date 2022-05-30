@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/maxicode2/maxicode2.github.io/issues"
   },
-  "homepage": "https://github.com/maxicode2/maxicode2.github.io#readme",
-  "dependencies": {
-    "grunt": "^1.4.1"
-  }
+  "homepage": "https://github.com/maxicode2/maxicode2.github.io#readme"
 }
