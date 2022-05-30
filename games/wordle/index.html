@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <title>Wordle++ | maxi.codes</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="./nyt-apple-touch-icon.png" />
+        <link rel="mask-icon" color="#000000" href="./nyt-safari-pinned-tab.svg" />
+        <meta name="apple-mobile-web-app-title" content="maxi.codes - Wordle++" />
+        <meta name="application-name" content="maxi.codes - Wordle++" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="sourceApp" content="games-crosswords" />
+        <meta property="description" content="Guess the hidden word in 6 tries. A new puzzle is available each day." />
+        <meta property="og:title" content="Wordle - A daily word game" />
+        <meta property="og:url" content="https://www.nytimes.com/games/wordle" />
+        <meta property="og:description" content="Guess the hidden word in 6 tries. A new puzzle is available each day." />
+        <meta property="og:image" content="./images/NYT-Wordle-Meta.png" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="nytimes.com" />
+        <link rel="canonical" href="https://www.nytimes.com/games/wordle/index.html" />
+        <link rel="manifest" href="manifest.json" />
+        <link href="./images/NYT-Wordle-Icon-32.png" rel="icon shortcut" sizes="3232" />
+        <link href="./images/NYT-Wordle-Icon-192.png" rel="apple-touch-icon" />
+
+        <style>
+            /* NYT Fonts */
+
+            @font-face {
+                font-family: 'nyt-karnakcondensed';
+                src: url('./fonts/karnakcondensed-normal-700.woff2') format('woff2'), url('./fonts/karnakcondensed-normal-700.woff') format('woff');
+                font-weight: 700;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'nyt-franklin';
+                src: url('./fonts/franklin-normal-500.woff2') format('woff2'), url('./fonts/franklin-normal-500.woff') format('woff');
+                font-weight: 500;
+                font-style: normal;
+            }
+
+            @font-face {
+                font-family: 'nyt-franklin-700';
+                src: url('./fonts/franklin-normal-700.woff2') format('woff2'), url('./fonts/franklin-normal-700.woff') format('woff');
+                font-weight: 700;
+                font-style: normal;
+            }
+
+            /* Global Styles & Colors */
+
+            :root {
+                --green: #6aaa64;
+                --darkendGreen: #538d4e;
+                --yellow: #c9b458;
+                --darkendYellow: #b59f3b;
+                --lightGray: #d8d8d8;
+                --gray: #86888a;
+                --darkGray: #939598;
+                --white: #fff;
+                --black: #212121;
+                /* Colorblind colors */
+                --orange: #f5793a;
+                --blue: #85c0f9;
+                font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+                font-size: 16px;
+                --header-height: 50px;
+                --keyboard-height: 200px;
+                --game-max-width: 500px;
+                /* icons */
+                --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized.svg');
+                --daily: url('./images/nav-icons/Crossword-Icon-Normalized.svg');
+                --mini: url('./images/nav-icons/Mini-Icon-Normalized.svg');
+                --tiles: url('./images/nav-icons/Tiles-Icon-Normalized.svg');
+                --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized.svg');
+                --vertex: url('./images/nav-icons/Vertex-Icon-Normalized.svg');
+                --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized.svg');
+            }
+
+            /* Light theme colors */
+
+            :root {
+                --color-tone-1: #000000;
+                --color-tone-2: #787c7e;
+                --color-tone-3: #878a8c;
+                --color-tone-4: #d3d6da;
+                --color-tone-5: #edeff1;
+                --color-tone-6: #f6f7f8;
+                --color-tone-7: #ffffff;
+                --color-nav-hover: #f4f4f4;
+                --opacity-50: rgba(255, 255, 255, 0.5);
+            }
+
+            /* Dark Theme Colors */
+
+            .nightmode {
+                --color-tone-1: #ffffff;
+                --color-tone-2: #818384;
+                --color-tone-3: #565758;
+                --color-tone-4: #3a3a3c;
+                --color-tone-5: #272729;
+                --color-tone-6: #1a1a1b;
+                --color-tone-7: #121213;
+                --color-nav-hover: #2f2f31;
+                --opacity-50: rgba(0, 0, 0, 0.5);
+                /* dark mode icons */
+                --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized-Color.svg');
+                --daily: url('./images/nav-icons/Crossword-Icon-Normalized-Color.svg');
+                --mini: url('./images/nav-icons/Mini-Icon-Normalized-Color.svg');
+                --tiles: url('./images/nav-icons/Tiles-Icon-Normalized-Color.svg');
+                --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized-Color.svg');
+                --vertex: url('./images/nav-icons/Vertex-Icon-Normalized-Color.svg');
+                --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized-Color.svg');
+            }
+
+            /* Constant colors and colors derived from theme */
+
+            :root,
+            .nightmode {
+                --color-background: var(--color-tone-7);
+            }
+
+            :root {
+                --color-present: var(--yellow);
+                --color-correct: var(--green);
+                --color-absent: var(--color-tone-2);
+                --tile-text-color: var(--color-tone-7);
+                --key-text-color: var(--color-tone-1);
+                --key-evaluated-text-color: var(--color-tone-7);
+                --key-bg: var(--color-tone-4);
+                --key-bg-present: var(--color-present);
+                --key-bg-correct: var(--color-correct);
+                --key-bg-absent: var(--color-absent);
+                --modal-content-bg: var(--color-tone-7);
+            }
+
+            .nightmode {
+                --color-present: var(--darkendYellow);
+                --color-correct: var(--darkendGreen);
+                --color-absent: var(--color-tone-4);
+                --tile-text-color: var(--color-tone-1);
+                --key-text-color: var(--color-tone-1);
+                --key-evaluated-text-color: var(--color-tone-1);
+                --key-bg: var(--color-tone-2);
+                --key-bg-present: var(--color-present);
+                --key-bg-correct: var(--color-correct);
+                --key-bg-absent: var(--color-absent);
+                --modal-content-bg: var(--color-tone-7);
+            }
+
+            .colorblind {
+                --color-correct: var(--orange);
+                --color-present: var(--blue);
+                --tile-text-color: var(--white);
+                --key-bg-present: var(--color-present);
+                --key-bg-correct: var(--color-correct);
+                --key-bg-absent: var(--color-absent);
+            }
+
+            html {
+                height: 100%;
+            }
+
+            body {
+                height: 100%;
+                background-color: var(--color-background);
+                margin: 0;
+                padding: 0;
+                /* Prevent scrollbar appearing on page transition */
+                overflow-y: hidden;
+            }
+
+            .nav-item {
+                background-color: var(--color-nav-hover);
+            }
+
+            p.banner-text {
+                font-family: 'nyt-franklin' !important;
+            }
+
+            #pz-gdpr {
+                font-family: 'nyt-franklin-700' !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <template id="end-modal-template">
+            <style>
+                .container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 16px 0;
+                }
+                h1 {
+                    font-weight: 700;
+                    font-size: 16px;
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+                
+                #statistics {
+                    display: flex;
+                    margin-bottom: 0;
+                }
+                
+                .statistic-container {
+                    flex: 1;
+                }
+                
+                .statistic-container .statistic {
+                    font-size: 36px;
+                    font-weight: 400;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    letter-spacing: 0.05em;
+                    font-variant-numeric: proportional-nums;
+                }
+                
+                .statistic .timer {
+                    font-variant-numeric: initial;
+                }
+                
+                .statistic-container .label {
+                    font-size: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                }
+            
+                #guess-distribution {
+                    width: 80%;
+                }
+            
+                .graph-container {
+                    width: 100%;
+                    height: 20px;
+                    display: flex;
+                    align-items: center;
+                    padding-bottom: 4px;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            
+                .graph-container .graph {
+                    width: 100%;
+                    height: 100%;
+                    padding-left: 4px;
+                }
+            
+                .graph-container .graph .graph-bar {
+                    height: 100%;
+                    /* Assume no wins */
+                    width: 0%;
+                    position: relative;
+                    background-color: var(--color-absent);
+                    display: flex;
+                    justify-content: center;
+                }
+            
+                .graph-container .graph .graph-bar.highlight {
+                    background-color: var(--color-correct);
+                }
+            
+                .graph-container .graph .graph-bar.align-right {
+                    justify-content: flex-end;
+                    padding-right: 8px;
+                }
+            
+                .graph-container .graph .num-guesses {
+                    font-weight: bold;
+                    color: var(--tile-text-color);
+                }
+            
+                #statistics,
+                #guess-distribution {
+                    padding-bottom: 10px;
+                }
+            
+                .footer {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+                    padding-bottom: 10px;
+                }
+            
+                .countdown {
+                    border-right: 1px solid var(--color-tone-1);
+                    padding-right: 12px;
+                    width: 50%;
+                }
+            
+                .actions {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-left: 12px;
+                    width: 50%;
+                }
+            
+                .no-data {
+                    text-align: center;
+                }
+            
+                .action-button {
+                    background-color: var(--key-bg-correct);
+                    color: var(--key-evaluated-text-color);
+                    font-family: inherit;
+                    font-weight: bold;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    border: none;
+                    user-select: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-transform: uppercase;
+                    -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+                    width: 80%;
+                    font-size: 20px;
+                    height: 52px;
+                    -webkit-filter: brightness(100%);
+                    filter: brightness(100%);
+                }
+                .action-button:hover {
+                    opacity: 0.9;
+                }
+                .action-button game-icon {
+                    width: 24px;
+                    height: 24px;
+                    padding-left: 8px;
+                }
+
+                @keyframes Shake {
+                    10%, 90% {
+                        transform: translateX(-1px);
+                    }
+
+                    20%, 80% {
+                        transform: translateX(2px);
+                    }
+
+                    30%, 50%, 70% {
+                        transform: translateX(-4px);
+                    }
+
+                    40%, 60% {
+                        transform: translateX(4px);
+                    }
+                }
+
+                #new-game {
+                    display: flex;
+                    justify-content: center;
+                }
+                #new-game[invalid] {
+                    animation-name: Shake;
+                    animation-duration: 600ms;
+                }
+                #randomize-button {
+                    border-top-right-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                    width: 52px;
+                }
+                #randomize-button > svg {
+                    padding-left: 8px;
+                    padding-right: 8px;
+                }
+                #new-game-input {
+                    height: 52px;
+                    border: none;
+                    outline: none;
+                    padding-left: 12px;
+                    padding-right: 12px;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    border-top-right-radius: 4px;
+                    border-bottom-right-radius: 4px;
+
+                    background-color: var(--color-absent);
+                    color: var(--key-evaluated-text-color);
+
+                    font-family: inherit;
+                    font-size: 25px;
+                    width: 100px;
+                    text-transform: uppercase;
+                }
+                #new-game-button {
+                    margin-left: 12px;
+                    padding-left: 12px;
+                }
+                #new-game-button > game-icon {
+                    padding: 0;
+                }
+                
+            </style>
+            <div id="end-modal" class="container">
+                <h1>Statistics</h1>
+                <div id="statistics"></div>
+                <h1>Guess Distribution</h1>
+                <div id="guess-distribution"></div>
+                <div class="footer"></div>
+                <h1>New Game</h1>
+                <div id="new-game">
+                    <script>
+                        (function () {
+                            var newGameTemplate = document.getElementById("end-modal-new-game-template");
+                            var newGame = this.shadowRoot.getElementById("new-game");
+                            newGame.appendChild(newGameTemplate.content.cloneNode(true));
+            
+                            var lastValidPartialGameString = ""
+                            var newGameInput = this.shadowRoot.getElementById("new-game-input")
+                            var newGameButton = this.shadowRoot.getElementById("new-game-button")
+                            this.shadowRoot.getElementById("randomize-button").addEventListener("click", (event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+            
+                                var id = Math.floor((Ma.length + 1) * Math.random());
+                                console.log(getDailyGameString(new Date))
+                                console.log(Ma[getDailyGameString(new Date)])
+                                while(id === getDailyGameString(new Date)) id = Math.floor((Ma.length + 1) * Math.random());
+                                newGameInput.value = "#" + id;
+                                lastValidPartialGameString = newGameInput.value;
+                            });
+                            
+                            newGameInput.addEventListener("click", (event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            });
+                            newGameInput.addEventListener("input", (event) => {
+                                if((/^(?:#(?:\d+)?|(?:[a-zA-Z]?){5})?$/g).test(newGameInput.value)) {
+                                    lastValidPartialGameString = newGameInput.value.toUpperCase();
+                                    newGameInput.value = lastValidPartialGameString;
+                                }
+                                else newGameInput.value = lastValidPartialGameString;
+                            })
+                            newGameInput.addEventListener("keydown", (event) => {
+                                if(event.keyCode === 13) newGameButton.click()
+                            })
+                            newGameButton.querySelector("game-icon").shadowRoot.querySelector("svg > path").setAttribute("fill", "var(--white)")
+                            newGameButton.addEventListener("click", (event) => {
+                                event.preventDefault();
+                                event.stopPropagation();
+            
+                                if((/^#\d+$/g).test(newGameInput.value)) {
+                                    window.location.hash = newGameInput.value.substring(1);
+                                    window.location.reload()
+                                }
+                                else if((/^[A-Z]{5}$/g).test(newGameInput.value)) {
+                                    var word = newGameInput.value.toLowerCase();
+                                    var shuf=(char,amt)=>String.fromCharCode(word.charCodeAt(char)+amt);
+                                    window.location.hash = shuf(3, 1)+shuf(1, 1)+shuf(2, 1)+shuf(0, 1)+shuf(4, 1)
+                                    window.location.reload()
+                                }
+                                else {
+                                    newGame.setAttribute("invalid", "");
+                                    setTimeout(() => newGame.removeAttribute("invalid"), 600);
+                                }
+                            })
+                        }).bind(document.querySelector("game-app").shadowRoot.querySelector("game-stats"))()
+                    </script>
+                </div> 
+            </div>
+        </template>
+        <template id="end-modal-statistics-template">
+            <div class="statistic-container">
+                <div class="statistic"></div>
+                <div class="label"></div>
+            </div>
+        </template>
+        <template id="end-modal-guess-distribution-template">
+            <div class="graph-container">
+                <div class="guess"></div>
+                <div class="graph">
+                    <div class="graph-bar">
+                        <div class="num-guesses"></div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="end-modal-footer-template">
+            <div class="countdown">
+                <h1>Next daily WORDLE</h1>
+                <div id="timer">
+                    <div class="statistic-container">
+                        <div class="statistic timer">
+                            <countdown-timer></countdown-timer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action-button" id="share-button">
+                    Share  <game-icon icon="share"></game-icon>
+                </button>
+            </div>
+        </template>
+        <template id="end-modal-new-game-template">
+            <button class="action-button" id="randomize-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path fill=var(--white) d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z" />
+                    <circle fill=var(--white) cx="7.5" cy="16.5" r="1.5" />
+                    <circle fill=var(--white) cx="7.5" cy="7.5" r="1.5" />
+                    <circle fill=var(--white) cx="12" cy="12" r="1.5" />
+                    <circle fill=var(--white) cx="16.5" cy="16.5" r="1.5" />
+                    <circle fill=var(--white) cx="16.5" cy="7.5" r="1.5" />
+                </svg>
+            </button>
+            <input type="text" id="new-game-input">
+            </input>
+            <button class="action-button" id="new-game-button">
+                New <game-icon icon="next"></game-icon>
+            </button>
+        </template>
+
+        <script>
+            (function() {
+                // Defining the hash before the main bundle allows the bundle access window.hash
+                window.wordle = window.wordle || {};
+                window.wordle.hash = '4d41d2be';
+            })();
+        </script>
+        <script src="wordle.min.js"></script>
+        <game-app></game-app>
+    </body>
+</html>
