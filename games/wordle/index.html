@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="cache-control" content="no-cache" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+        <meta charset="UTF-8">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
         <title>Wordle++ | maxi.codes</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="./nyt-apple-touch-icon.png" />
-        <link rel="mask-icon" color="#000000" href="./nyt-safari-pinned-tab.svg" />
-        <meta name="apple-mobile-web-app-title" content="maxi.codes - Wordle++" />
-        <meta name="application-name" content="maxi.codes - Wordle++" />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="sourceApp" content="games-crosswords" />
-        <meta property="description" content="Guess the hidden word in 6 tries. A new puzzle is available each day." />
-        <meta property="og:title" content="Wordle - A daily word game" />
-        <meta property="og:url" content="https://maxi.codes/games/wordle" />
-        <meta property="og:description" content="Guess the hidden word in 6 tries. A new puzzle is available each day." />
-        <meta property="og:image" content="./images/NYT-Wordle-Meta.png" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="maxi.codes" />
-        <link rel="canonical" href="https://maxi.codes/games/wordle/index.html" />
-        <link rel="manifest" href="manifest.json" />
-        <link href="./images/NYT-Wordle-Icon-32.png" rel="icon shortcut" sizes="3232" />
-        <link href="./images/NYT-Wordle-Icon-192.png" rel="apple-touch-icon" />
+        <link rel="apple-touch-icon" sizes="180x180" href="nyt-apple-touch-icon.png">
+        <link rel="mask-icon" color="#000000" href="nyt-safari-pinned-tab.svg">
+        <meta name="apple-mobile-web-app-title" content="maxi.codes - Wordle++">
+        <meta name="application-name" content="maxi.codes - Wordle++">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="theme-color" content="#000000">
+        <meta name="sourceApp" content="games-crosswords">
+
+        <meta property="og:title" content="Wordle++ | maxi.codes">
+        <meta property="og:description" content="wordle without cliffhangers">
+        <meta property="og:image" content="thumbnail.png">
+
+        <meta name="twitter:title" content="Wordle++ | maxi.codes">
+        <meta name="twitter:description" content="wordle without cliffhangers">
+        <meta name="twitter:image" content="thumbnail.png">
+
+        <meta name="description" content="wordle without cliffhangers">
+        <meta name="author" content="maxicode">
+
+        <link rel="canonical" href="https://maxi.codes/games/wordle/index.html">
+        <link rel="manifest" href="manifest.json">
+        <link href="images/NYT-Wordle-Icon-32.png" rel="icon shortcut" sizes="3232">
+        <link href="images/NYT-Wordle-Icon-192.png" rel="apple-touch-icon">
 
         <style>
             /* NYT Fonts */
 
             @font-face {
                 font-family: 'nyt-karnakcondensed';
-                src: url('./fonts/karnakcondensed-normal-700.woff2') format('woff2'), url('./fonts/karnakcondensed-normal-700.woff') format('woff');
+                src: url('fonts/karnakcondensed-normal-700.woff2') format('woff2'), url('fonts/karnakcondensed-normal-700.woff') format('woff');
                 font-weight: 700;
                 font-style: normal;
             }
 
             @font-face {
                 font-family: 'nyt-franklin';
-                src: url('./fonts/franklin-normal-500.woff2') format('woff2'), url('./fonts/franklin-normal-500.woff') format('woff');
+                src: url('fonts/franklin-normal-500.woff2') format('woff2'), url('fonts/franklin-normal-500.woff') format('woff');
                 font-weight: 500;
                 font-style: normal;
             }
 
             @font-face {
                 font-family: 'nyt-franklin-700';
-                src: url('./fonts/franklin-normal-700.woff2') format('woff2'), url('./fonts/franklin-normal-700.woff') format('woff');
+                src: url('fonts/franklin-normal-700.woff2') format('woff2'), url('fonts/franklin-normal-700.woff') format('woff');
                 font-weight: 700;
                 font-style: normal;
             }
@@ -69,13 +74,13 @@
                 --keyboard-height: 200px;
                 --game-max-width: 500px;
                 /* icons */
-                --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized.svg');
-                --daily: url('./images/nav-icons/Crossword-Icon-Normalized.svg');
-                --mini: url('./images/nav-icons/Mini-Icon-Normalized.svg');
-                --tiles: url('./images/nav-icons/Tiles-Icon-Normalized.svg');
-                --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized.svg');
-                --vertex: url('./images/nav-icons/Vertex-Icon-Normalized.svg');
-                --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized.svg');
+                --spelling-bee: url('images/nav-icons/SpellingBee-Icon-Normalized.svg');
+                --daily: url('images/nav-icons/Crossword-Icon-Normalized.svg');
+                --mini: url('images/nav-icons/Mini-Icon-Normalized.svg');
+                --tiles: url('images/nav-icons/Tiles-Icon-Normalized.svg');
+                --sudoku: url('images/nav-icons/Sudoku-Icon-Normalized.svg');
+                --vertex: url('images/nav-icons/Vertex-Icon-Normalized.svg');
+                --letter-boxed: url('images/nav-icons/LetterBoxed-Icon-Normalized.svg');
             }
 
             /* Light theme colors */
@@ -105,13 +110,13 @@
                 --color-nav-hover: #2f2f31;
                 --opacity-50: rgba(0, 0, 0, 0.5);
                 /* dark mode icons */
-                --spelling-bee: url('./images/nav-icons/SpellingBee-Icon-Normalized-Color.svg');
-                --daily: url('./images/nav-icons/Crossword-Icon-Normalized-Color.svg');
-                --mini: url('./images/nav-icons/Mini-Icon-Normalized-Color.svg');
-                --tiles: url('./images/nav-icons/Tiles-Icon-Normalized-Color.svg');
-                --sudoku: url('./images/nav-icons/Sudoku-Icon-Normalized-Color.svg');
-                --vertex: url('./images/nav-icons/Vertex-Icon-Normalized-Color.svg');
-                --letter-boxed: url('./images/nav-icons/LetterBoxed-Icon-Normalized-Color.svg');
+                --spelling-bee: url('images/nav-icons/SpellingBee-Icon-Normalized-Color.svg');
+                --daily: url('images/nav-icons/Crossword-Icon-Normalized-Color.svg');
+                --mini: url('images/nav-icons/Mini-Icon-Normalized-Color.svg');
+                --tiles: url('images/nav-icons/Tiles-Icon-Normalized-Color.svg');
+                --sudoku: url('images/nav-icons/Sudoku-Icon-Normalized-Color.svg');
+                --vertex: url('images/nav-icons/Vertex-Icon-Normalized-Color.svg');
+                --letter-boxed: url('images/nav-icons/LetterBoxed-Icon-Normalized-Color.svg');
             }
 
             /* Constant colors and colors derived from theme */
@@ -513,12 +518,12 @@
         <template id="end-modal-new-game-template">
             <button class="action-button" id="randomize-button">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                    <path fill=var(--white) d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z" />
-                    <circle fill=var(--white) cx="7.5" cy="16.5" r="1.5" />
-                    <circle fill=var(--white) cx="7.5" cy="7.5" r="1.5" />
-                    <circle fill=var(--white) cx="12" cy="12" r="1.5" />
-                    <circle fill=var(--white) cx="16.5" cy="16.5" r="1.5" />
-                    <circle fill=var(--white) cx="16.5" cy="7.5" r="1.5" />
+                    <path fill=var(--white) d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z">
+                    <circle fill=var(--white) cx="7.5" cy="16.5" r="1.5">
+                    <circle fill=var(--white) cx="7.5" cy="7.5" r="1.5">
+                    <circle fill=var(--white) cx="12" cy="12" r="1.5">
+                    <circle fill=var(--white) cx="16.5" cy="16.5" r="1.5">
+                    <circle fill=var(--white) cx="16.5" cy="7.5" r="1.5">
                 </svg>
             </button>
             <input type="text" id="new-game-input">
