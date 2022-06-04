@@ -1,3 +1,6 @@
 [submodule "luminosity"]
 	path = games/questions
 	url = https://github.com/maxicode2/luminosity/
+[submodule "games/wordle"]
+	path = games/wordle
+	url = https://github.com/maxicode2/wordle
